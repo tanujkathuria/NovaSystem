@@ -1,4 +1,4 @@
-package com.svam.NovaSystem;
+package com.svam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
-public class NovaSystemApplication {
+public class MainApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(NovaSystemApplication.class, args);
+		SpringApplication.run(MainApplication.class, args);
 	}
 
 }
