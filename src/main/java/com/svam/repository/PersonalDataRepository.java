@@ -1,8 +1,8 @@
-package com.svam.NovaSystem.repository;
+package com.svam.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.svam.NovaSystem.model.PersonalData;
+import com.svam.models.PersonalData;
 
 /**
  * This will be auto implemented by the Spring 

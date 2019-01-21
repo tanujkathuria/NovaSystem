@@ -1,10 +1,10 @@
-package com.svam.NovaSystem.service;
+package com.svam.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.svam.NovaSystem.model.PersonalData;
-import com.svam.NovaSystem.repository.PersonalDataRepository;
+import com.svam.models.PersonalData;
+import com.svam.repository.PersonalDataRepository;
 
 /**
  * 

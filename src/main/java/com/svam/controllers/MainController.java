@@ -1,11 +1,11 @@
-package com.svam.NovaSystem.controllers;
+package com.svam.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.svam.NovaSystem.model.PersonalData;
-import com.svam.NovaSystem.service.PersonalDataService;
+import com.svam.models.PersonalData;
+import com.svam.service.PersonalDataService;
 
 /**
  * 

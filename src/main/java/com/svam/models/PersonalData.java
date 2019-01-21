@@ -1,4 +1,4 @@
-package com.svam.NovaSystem.model;
+package com.svam.models;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
