@@ -15,6 +15,7 @@ public class Agency {
 	@JsonIgnore
 	@Column(name="AgencyId")
 	private int agencyId;
+	
 	@Column(name="AgencyName")
 	private String agencyName;
 

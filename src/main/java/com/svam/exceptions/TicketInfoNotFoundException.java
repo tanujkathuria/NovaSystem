@@ -1,5 +1,10 @@
 package com.svam.exceptions;
 
+/**
+ * 
+ * @author tanujkathuria
+ *
+ */
 public class TicketInfoNotFoundException extends RuntimeException{
 
 	private static final long serialVersionUID = 2305130525843727470L;

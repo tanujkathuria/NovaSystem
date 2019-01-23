@@ -1,5 +1,10 @@
 package com.svam.exceptions;
 
+/**
+ * 
+ * @author tanujkathuria
+ *
+ */
 public class ExceptionMessage {
 
 	public ExceptionMessage(String message, String details) {

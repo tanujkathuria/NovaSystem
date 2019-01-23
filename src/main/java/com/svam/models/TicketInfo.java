@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="ticket_info")
@@ -16,6 +17,7 @@ public class TicketInfo {
 	
 	@Id
 	@GeneratedValue
+	@JsonProperty(value = "ticketid")
 	private int record_id;
 	@Column(name ="device_id")
 	@JsonIgnore

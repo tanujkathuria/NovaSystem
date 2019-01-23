@@ -20,7 +20,7 @@ public class AgencyHearingTime  {
 	@GeneratedValue
 	@Column(name = "record_id")
 	@JsonProperty(value = "ticketid")
-	private Long recordId;
+	private Integer recordId;
 
 	@Column(name="agency_name")
 	private String agencyName;
@@ -41,10 +41,10 @@ public class AgencyHearingTime  {
 	@Column(name="create_user")
 	private String createUser;
 
-	public Long getRecordId() {
+	public Integer getRecordId() {
 		return recordId;
 	}
-	public void setRecordId(Long recordId) {
+	public void setRecordId(Integer recordId) {
 		this.recordId = recordId;
 	}
 	public String getAgencyName() {

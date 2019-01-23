@@ -2,6 +2,7 @@ USE `NOVA`
 ;
 /****** Object:  Table `Agency`    Script Date: 22-01-2019 16:29:09 ******/
 
+insert into Agency (`AgencyName`) values ('Svam')
 
 CREATE TABLE `Agency`(
 	`AgencyId` int AUTO_INCREMENT NOT NULL,
@@ -14,36 +15,41 @@ PRIMARY KEY
 ;
 /****** Object:  Table `AgencyHearingTime`    Script Date: 22-01-2019 16:29:10 ******/
 
+insert into agency_hearing_time(`hearing_time`,`is_mobile_records`,`is_enabled`,`agency_name`)
+  values(now(),1,1,'Svam');
 
-CREATE TABLE `AgencyHearingTime`(
-	`RecordId` int AUTO_INCREMENT NOT NULL,
-	`AgenecyName` varchar(100) NULL,
-	`HearingTime` time(6) NULL,
-	`IsMobileRecords` tinyint NOT NULL,
-	`IsEnabled` tinyint NOT NULL,
-	`CreatedDate` datetime NULL,
-	`CreateUser` varchar(50) NULL,
+
+CREATE TABLE `Agency_Hearing_Time`(
+	`record_id` int AUTO_INCREMENT NOT NULL,
+	`agency_name` varchar(100) NULL,
+	`hearing_time` time(6) NULL,
+	`is_mobile_records` tinyint NOT NULL,
+	`is_enabled` tinyint NOT NULL,
+	`created_date` datetime NULL,
+	`create_user` varchar(50) NULL,
 PRIMARY KEY 
 (
-	`RecordId` ASC
+	`record_id` ASC
 )
 )
 ;
 /****** Object:  Table `City`    Script Date: 22-01-2019 16:29:10 ******/
 
+insert into City(`city_name`,`state_id`) values ('Buffalo','1');
 
 CREATE TABLE `City`(
-	`CityId` int AUTO_INCREMENT NOT NULL,
-	`CityName` varchar(100) NULL,
-	`StateId` int NULL,
+	`city_id` int AUTO_INCREMENT NOT NULL,
+	`city_name` varchar(100) NULL,
+	`state_id` int NULL,
 PRIMARY KEY 
 (
-	`CityId` ASC
+	`city_id` ASC
 )
 )
 ;
 /****** Object:  Table `Country`    Script Date: 22-01-2019 16:29:10 ******/
 
+insert into Country (`CountryName`) values('USA');
 
 CREATE TABLE `Country`(
 	`CountryId` int AUTO_INCREMENT NOT NULL,
@@ -105,7 +111,7 @@ PRIMARY KEY
 ;
 /****** Object:  Table `State`    Script Date: 22-01-2019 16:29:10 ******/
 
-
+insert into State(`StateName`,`CountryId`)values('New York','1');
 CREATE TABLE `State`(
 	`StateId` int AUTO_INCREMENT NOT NULL,
 	`StateName` varchar(100) NULL,
@@ -118,38 +124,45 @@ PRIMARY KEY
 ;
 /****** Object:  Table `TicketInfo`    Script Date: 22-01-2019 16:29:10 ******/
 
+insert into ticket_info(device_id) values (1);
+insert into ticket_info(device_id) values (1);
 
-CREATE TABLE `TicketInfo`(
-	`RecordId` int AUTO_INCREMENT NOT NULL,
-	`DeviceId` varchar(20) NULL,
-	`TicketStartNumber` int NULL,
-	`TicketEndNumber` int NULL,
-	`LastTicketNumber` int NULL,
-	`TicketUse` int NULL,
-	`TicketRemaining` int NULL,
-	`CreatedDate` datetime NULL,
-	`CreatedUser` varchar(50) NULL,
+
+CREATE TABLE `ticket_info`(
+	`record_id` int AUTO_INCREMENT NOT NULL,
+	`device_id` varchar(20) NULL,
+	`ticket_start_number` int NULL,
+	`ticket_end_number` int NULL,
+	`last_ticket_number` int NULL,
+	`ticket_use` int NULL,
+	`ticket_remaining` int NULL,
+	`created_date` datetime NULL,
+	`created_user` varchar(50) NULL,
 PRIMARY KEY 
 (
-	`RecordId` ASC
+	`record_id` ASC
 )
 )
 ;
 /****** Object:  Table `User`    Script Date: 22-01-2019 16:29:10 ******/
 
+insert into User(`Rank`,`Name`,`badge_no`,`Email`,`effective_date`,`appointment_date`,`is_supervisor`,
+`reporting_agency`,`reporting_level`,`is_enabled`,`created_date`,`created_user`) 
+values('first','Tanuj','1','tanuj@gmail.com',CURDATE(),CURDATE(),
+'1','Svam','level1','1',CURDATE(),'tanuj');
 
 CREATE TABLE `User`(
-	`UserId` int AUTO_INCREMENT NOT NULL,
+	`user_id` int AUTO_INCREMENT NOT NULL,
 	`Rank` varchar(10) NULL,
 	`Name` varchar(100) NULL,
-	`BadgeNo` varchar(10) NULL,
+	`badge_no` varchar(10) NULL,
 	`Email` varchar(50) NULL,
-	`EffectiveDate` date NULL,
-	`AppointmentDate` date NULL,
-	`IsSupervisor` tinyint NULL,
-	`ReportingAgency` varchar(50) NULL,
-	`ReportingLevel` varchar(50) NULL,
-	`IsEnabled` tinyint NULL,
+	`effective_date` date NULL,
+	`appointment_date` date NULL,
+	`is_supervisor` tinyint NULL,
+	`reporting_agency` varchar(50) NULL,
+	`reporting_level` varchar(50) NULL,
+	`is_enabled` tinyint NULL,
 	`CreatedDate` datetime NULL,
 	`CreatedUser` varchar(50) NULL,
 PRIMARY KEY 
@@ -160,17 +173,23 @@ PRIMARY KEY
 ;
 /****** Object:  Table `Violation`    Script Date: 22-01-2019 16:29:10 ******/
 
-
+insert into Violation (Description) values('violation 1');
 CREATE TABLE `Violation`(
-	`ViolationCode` int AUTO_INCREMENT NOT NULL,
+	`violation_code` int AUTO_INCREMENT NOT NULL,
 	`Description` varchar(100) NULL,
 PRIMARY KEY 
 (
-	`ViolationCode` ASC
+	`violation_code` ASC
 )
 )
 ;
 /****** Object:  Table `ViolationDetails`    Script Date: 22-01-2019 16:29:10 ******/
+
+insert into ViolationDetails(`ViolationCode`,`City`,`State`,`Name`)
+values('Test 1','Buffalo','New York','Test Violation 1');
+city and state will come from their tables 
+description will come from Violation table
+
 
 
 CREATE TABLE `ViolationDetails`(

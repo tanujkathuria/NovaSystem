@@ -5,6 +5,11 @@ import java.util.Date;
 import com.svam.models.AgencyHearingTime;
 import com.svam.models.User;
 
+/**
+ * 
+ * @author tanujkathuria
+ *
+ */
 public class PersonnelDataDTO {
 
 	private String personnelname;
