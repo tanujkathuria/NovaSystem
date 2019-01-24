@@ -16,6 +16,11 @@ public class UserNotFoundException extends RuntimeException{
 		super();
 		this.exceptionMessage = id+""+exceptionMessage;
 	}
+	public UserNotFoundException(String userName, String exceptionMessage) {
+		super();
+		this.exceptionMessage = userName+""+exceptionMessage;
+	}
+
 
 	@Override
 	public String getMessage() {

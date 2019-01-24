@@ -6,16 +6,17 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.svam.dto.HearingTimeDTO;
+import com.svam.dto.LoginDTO;
 import com.svam.dto.MasterDataDTO;
 import com.svam.dto.PersonnelDataDTO;
 import com.svam.dto.SummaryDataDTO;
@@ -25,6 +26,7 @@ import com.svam.models.User;
 import com.svam.models.ViolationDetails;
 import com.svam.service.AgencyHearingService;
 import com.svam.service.AgencyService;
+import com.svam.service.LoginService;
 import com.svam.service.MasterDetailsService;
 import com.svam.service.TicketInfoService;
 import com.svam.service.UserService;
@@ -58,6 +60,10 @@ public class MainController {
 	
 	@Autowired
 	private ViolationDetailsService violationDetailsService; 
+	
+	@Autowired
+	private LoginService loginService;
+	
 
 	@GetMapping("/GetPersonnelData/{id}")
 	public Map<String, Object> getPersonalData(@PathVariable Long id)  {
@@ -83,13 +89,17 @@ public class MainController {
 	}
 	
 	@GetMapping("/GetHearingTime/{agencyId}")
-	public List<HearingTimeDTO> getHearingTime(@PathVariable Integer agencyId)  {
-		return agencyService.getAgencyName(agencyId);
+	public Map<String, Object> getHearingTime(@PathVariable Integer agencyId)  {
+		Map<String, Object> map = new  HashMap<String, Object>();
+		map.put("hearingtime", agencyService.getAgencyName(agencyId));
+		return map;
 	}
 	
 	@GetMapping("/GetSummaryData/{userId}")
-	public List<SummaryDataDTO> getSummaryData(@PathVariable String  userId)  {
-		return violationDetailsService.getViolationDetails(userId);
+	public Map<String, Object> getSummaryData(@PathVariable String  userId)  {
+		Map<String, Object> map = new  HashMap<String, Object>();
+		map.put("summarydata", violationDetailsService.getViolationDetails(userId));
+		return map;
 	}
 	
 	@PostMapping("/UploadViolation")
@@ -97,6 +107,10 @@ public class MainController {
 		return violationDetailsService.saveViolationData(violationDetails);
 	}
 	
+	@GetMapping("/login")
+	public LoginDTO loginApp(@RequestParam("user") String userName, @RequestParam("pass") String password ){
+		return loginService.getLoginDetails(userName);
+	}
 	
 		
 	/*	
