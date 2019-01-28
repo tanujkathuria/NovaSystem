@@ -20,17 +20,17 @@ public class TicketInfo {
 	@JsonProperty(value = "ticketid")
 	private int record_id;
 	@Column(name ="device_id")
-	@JsonIgnore
+	
 	private String deviceId;
-	@JsonIgnore
+	
 	private Integer ticket_start_number;
-	@JsonIgnore
+	
 	private Integer ticket_end_number;
-	@JsonIgnore
+	
 	private Integer last_ticket_number;
-	@JsonIgnore
+	
 	private Integer ticket_use;
-	@JsonIgnore
+	
 	private Integer ticket_remaining;
 	@JsonIgnore
 	private Date created_date;
