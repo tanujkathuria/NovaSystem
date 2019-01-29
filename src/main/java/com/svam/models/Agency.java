@@ -12,13 +12,21 @@ public class Agency {
 
 	@Id
 	@GeneratedValue
-	@JsonIgnore
 	@Column(name="AgencyId")
 	private int agencyId;
 	
 	@Column(name="AgencyName")
 	private String agencyName;
+	
+	@Column(name="AgencyDesc")
+	private String agencyDesc;
 
+	public String getAgencyDesc() {
+		return agencyDesc;
+	}
+	public void setAgencyDesc(String agencyDesc) {
+		this.agencyDesc = agencyDesc;
+	}
 	public int getAgencyId() {
 		return agencyId;
 	}

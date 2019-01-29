@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.svam.dto.HearingTimeDTO;
@@ -34,6 +36,22 @@ public class AgencyServiceImpl implements AgencyService {
 		 });
 		
 		 return hearingTimeList;
+	}
+	
+	public ResponseEntity<String> addAgency(Agency agency) {
+		Agency agen = agencyRepository.save(agency);
+		if(agen != null) {
+			return  new ResponseEntity<>("AddAgency", HttpStatus.OK);
+		}
+		return new ResponseEntity<>("AddAgency", HttpStatus.BAD_REQUEST);
+	}
+	
+	public List<Agency> getAgencies() {
+		List<Agency> agencies =new ArrayList<>();
+		agencyRepository.findAll().forEach(e -> {
+			agencies.add(e);
+		});
+		return agencies;
 	}
 
 }

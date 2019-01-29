@@ -20,6 +20,7 @@ import com.svam.dto.LoginDTO;
 import com.svam.dto.MasterDataDTO;
 import com.svam.dto.PersonnelDataDTO;
 import com.svam.exceptions.UserNotFoundException;
+import com.svam.models.Agency;
 import com.svam.models.AgencyHearingTime;
 import com.svam.models.User;
 import com.svam.models.ViolationDetails;
@@ -112,6 +113,15 @@ public class MainController {
 		return loginService.getLoginDetails(userName);
 	}
 	
+	@PostMapping("/AddAgency")
+	public ResponseEntity<String>  addAgency(@RequestBody Agency  agencyDetails){
+		return agencyService.addAgency(agencyDetails);
+	}
+	
+	@GetMapping("/GetAgencies")
+	public List<Agency> getAgencies( ){
+		return  agencyService.getAgencies();
+	}
 		
 	/*	
 	 * @GetMapping("/employees")
