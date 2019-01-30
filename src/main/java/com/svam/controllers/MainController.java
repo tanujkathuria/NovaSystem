@@ -22,10 +22,12 @@ import com.svam.dto.PersonnelDataDTO;
 import com.svam.exceptions.UserNotFoundException;
 import com.svam.models.Agency;
 import com.svam.models.AgencyHearingTime;
+import com.svam.models.Equipment;
 import com.svam.models.User;
 import com.svam.models.ViolationDetails;
 import com.svam.service.AgencyHearingService;
 import com.svam.service.AgencyService;
+import com.svam.service.EquipmentService;
 import com.svam.service.LoginService;
 import com.svam.service.MasterDetailsService;
 import com.svam.service.TicketInfoService;
@@ -65,12 +67,15 @@ public class MainController {
 	@Autowired
 	private LoginService loginService;
 	
+	@Autowired
+	private EquipmentService equipmentService;
+	
 
 	@GetMapping("/GetPersonnelData/{id}")
 	public Map<String, Object> getPersonalData(@PathVariable Long id)  {
 		User user = userService.findUser(id)
 				.orElseThrow(() -> new UserNotFoundException(id," user is not found"));
-		AgencyHearingTime agencyHearingTime = agencyHearingService.findByAgencyName(user);
+		AgencyHearingTime agencyHearingTime = agencyHearingService.findByAgencyName(user.getReportingAgency());
 		Map<String, Object> map = new  HashMap<String, Object>();
 		map.put("PersonnelData",PersonnelDataDTO.build(user, agencyHearingTime));
 		return map ;
@@ -90,9 +95,9 @@ public class MainController {
 	}
 	
 	@GetMapping("/GetHearingTime/{agencyId}")
-	public Map<String, Object> getHearingTime(@PathVariable Integer agencyId)  {
+	public Map<String, Object> getHearingTime(@PathVariable String agencyId)  {
 		Map<String, Object> map = new  HashMap<String, Object>();
-		map.put("hearingtime", agencyService.getAgencyName(agencyId));
+		map.put("hearingtime", agencyHearingService.findByAgencyName(agencyId));
 		return map;
 	}
 	
@@ -122,7 +127,22 @@ public class MainController {
 	public List<Agency> getAgencies( ){
 		return  agencyService.getAgencies();
 	}
+	
+	@GetMapping("/GetEquipments/{deviceType}")
+	public List<Equipment> GetEquipment(@PathVariable String deviceType ){
+		return  equipmentService.getEquipmentByDeviceType(deviceType);
+	}
+	
 		
+	@GetMapping("/GetHearingTime")
+	public List<AgencyHearingTime> getHearingTime()  {
+		return agencyHearingService.getHearingTime();
+	}
+	
+	@PostMapping("/SaveHearingTime")
+	public ResponseEntity<String>  saveHearingTime(@RequestBody AgencyHearingTime  agencyHearingTime){
+		return agencyHearingService.saveHearingTime(agencyHearingTime);
+	}
 	/*	
 	 * @GetMapping("/employees")
 	List<Employee> all() {

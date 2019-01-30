@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -27,6 +28,9 @@ public class AgencyHearingTime  {
 
 	@Column(name="hearing_time")
 	@Temporal(TemporalType.TIME)
+	@JsonFormat(
+		      shape = JsonFormat.Shape.STRING,
+		      pattern = "hh:mm:ss")
 	private Date hearingTime;
 
 	@Column(name="is_mobile_records")
